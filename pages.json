@@ -1,0 +1,43 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "模板选择"
+			}
+		},
+		{
+			"path": "pages/report/report",
+			"style": {
+				"navigationBarTitleText": "报告列表"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "检测报告工具",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#999",
+		"selectedColor": "#007AFF",
+		"backgroundColor": "#fff",
+		"borderStyle": "black",
+		"list": [
+			{
+				"pagePath": "pages/home/home",
+				"text": "模板选择",
+				"iconPath": "static/home.png",
+				"selectedIconPath": "static/home.png"
+			},
+			{
+				"pagePath": "pages/report/report",
+				"text": "报告列表",
+				"iconPath": "static/document.png",
+				"selectedIconPath": "static/document.png"
+			}
+		]
+	},
+	"uniIdRouter": {}
+}
