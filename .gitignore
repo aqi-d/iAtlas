@@ -1,0 +1,46 @@
+# 依赖包
+node_modules/
+**/node_modules/**
+
+# HBuilderX 编译输出
+unpackage/
+**/unpackage/**
+
+# 开发调试文件
+*.log
+logs/
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# 系统文件
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# 云函数相关（敏感配置）
+uniCloud-aliyun/cloudfunctions/**/config.js
+uniCloud-aliyun/cloudfunctions/**/*.env
+uniCloud-aliyun/cloudfunctions/**/.env*
+uniCloud-aliyun/cloudfunctions/**/credentials.json
+
+# 本地配置文件（包含敏感信息）
+manifest.local.json
+*.local.json
+
+# 微信小程序特有
+.idea/
+.vscode/
+.project
+.classpath
+
+# 构建产物
+dist/
+build/

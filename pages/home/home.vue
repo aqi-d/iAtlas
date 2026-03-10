@@ -35,7 +35,7 @@
 				:disabled="!selectedTemplate || images.length === 0"
 				@click="analyzeImages"
 			>
-				AI分析图片
+				AI 分析图片
 			</button>
 		</view>
 	</view>
@@ -91,10 +91,9 @@ export default {
 				return;
 			}
 			
-			uni.showLoading({ title: 'AI分析中...' });
+			uni.showLoading({ title: 'AI 分析中...' });
 			
 			try {
-				// 调用AI服务分析图片
 				const analysisResult = await aiService.analyzeImages(this.selectedTemplate, this.images);
 				
 				if (analysisResult.success) {
@@ -104,39 +103,38 @@ export default {
 						icon: 'success' 
 					});
 					
-					// 生成报告
 					const reportResult = await aiService.generateReport(this.selectedTemplate, analysisResult.data);
 					
 					if (reportResult.success) {
-						// 存储报告到uniCloud
 						uni.showLoading({ title: '存储报告中...' });
 						
 						uniCloud.callFunction({
-							name: 'report-manager',
-							data: {
-								action: 'saveReport',
-								report: reportResult.data
-							}
-						}).then(res => {
+        name: 'report-manager',
+        data: {
+            action: 'saveReport',
+            report: reportResult.data,
+            htmlContent: reportResult.data.docContent
+        },
+        config: {
+            spaceId: 'mp-fa2d4671-a5b6-4b91-ad1f-2424e84a69b4'
+        }
+    }).then(res => {
 							uni.hideLoading();
-							console.log('云函数返回结果:', res);
 							if (res.result.success) {
 								uni.showToast({ 
 									title: '报告生成成功', 
 									icon: 'success' 
 								});
 							} else {
-								console.error('存储报告失败:', res.result.message);
 								uni.showToast({ 
-									title: '存储报告失败: ' + res.result.message, 
+									title: '存储报告失败：' + res.result.message, 
 									icon: 'none' 
 								});
 							}
 						}).catch(error => {
 							uni.hideLoading();
-							console.error('云存储失败:', error);
 							uni.showToast({ 
-								title: '存储报告失败: ' + error.message, 
+								title: '存储报告失败：' + error.message, 
 								icon: 'none' 
 							});
 						});
@@ -160,7 +158,6 @@ export default {
 					title: '分析失败，请重试', 
 					icon: 'none' 
 				});
-				console.error('分析失败:', error);
 			}
 		}
 	}
@@ -176,7 +173,7 @@ export default {
 
 .section {
 	background-color: #fff;
-	border-radius: 12rpx;
+	border-radius:12rpx;
 	padding: 30rpx;
 	margin-bottom: 20rpx;
 	box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
